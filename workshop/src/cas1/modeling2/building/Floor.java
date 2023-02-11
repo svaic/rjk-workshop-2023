@@ -1,37 +1,28 @@
 package cas1.modeling2.building;
 
-public class Floor {
+import java.util.List;
 
-    private Apartment apartment1;
-    private Apartment apartment2;
-    private Apartment apartment3;
-    private Apartment apartment4;
+public class Floor {
+    private List<Apartment> apartmentList;
     private int floorNumber;
     private int squareMeterPrice;
 
-    public Floor(int floorNumber, Apartment apartment1, Apartment apartment2, Apartment apartment3, Apartment apartment4, int squareMeterPrice) {
+
+    public Floor(int floorNumber, List<Apartment> apartmentList, int squareMeterPrice) {
+        this.apartmentList = apartmentList;
         this.floorNumber = floorNumber;
-        this.apartment1 = apartment1;
-        this.apartment2 = apartment2;
-        this.apartment3 = apartment3;
-        this.apartment4 = apartment4;
         this.squareMeterPrice = squareMeterPrice;
     }
 
     public int getNumberFreeApartments() {
         int freeApartments = 0;
-        if (!apartment1.isSold()) {
-            freeApartments++;
+        for (int i = 0; i < apartmentList.size(); i++) {
+            Apartment apartment = apartmentList.get(i);
+            if (!apartment.isSold()) {
+                freeApartments++;
+            }
         }
-        if (!apartment2.isSold()) {
-            freeApartments++;
-        }
-        if (!apartment3.isSold()) {
-            freeApartments++;
-        }
-        if (!apartment4.isSold()) {
-            freeApartments++;
-        }
+
         return freeApartments;
     }
 
@@ -41,10 +32,10 @@ public class Floor {
         if (freeApartments == 0) {
             System.out.println("No available apartments on this floor.");
         } else {
-            printFreeApartmentDetails(apartment1);
-            printFreeApartmentDetails(apartment2);
-            printFreeApartmentDetails(apartment3);
-            printFreeApartmentDetails(apartment4);
+            for (int i = 0; i < apartmentList.size(); i++) {
+                Apartment apartment = apartmentList.get(i);
+                printFreeApartmentDetails(apartment);
+            }
         }
     }
 

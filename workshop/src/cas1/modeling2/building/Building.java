@@ -1,25 +1,25 @@
 package cas1.modeling2.building;
 
+import java.util.List;
+
 public class Building {
 
     private String address;
-    private Floor floor1;
-    private Floor floor2;
-    private Floor floor3;
 
-    public Building(String address, Floor floor1, Floor floor2, Floor floor3) {
+    private List<Floor> floorList;
+
+    public Building(String address, List<Floor> floorList) {
         this.address = address;
-        this.floor1 = floor1;
-        this.floor2 = floor2;
-        this.floor3 = floor3;
+        this.floorList = floorList;
     }
 
     public void printDetails() {
         System.out.println("Details for building with address '" + address + "':");
         System.out.println();
-        printFloorDetails(floor1);
-        printFloorDetails(floor2);
-        printFloorDetails(floor3);
+        for (int i = 0; i < floorList.size(); i++) {
+            Floor floor = floorList.get(i);
+            printFloorDetails(floor);
+        }
     }
 
     private void printFloorDetails(Floor floor) {
